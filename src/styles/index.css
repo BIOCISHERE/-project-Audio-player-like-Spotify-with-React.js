@@ -10,3 +10,16 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+.songContainer{
+    height: 545px;
+    background: grey;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+.songControl{
+    color: grey;
+}
+.songControl:hover{
+    color: white;
+    cursor: pointer;
+}
