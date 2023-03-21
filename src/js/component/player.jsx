@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaStepBackward, FaStepForward, FaPlay, FaPause } from "react-icons/fa";
 
 
