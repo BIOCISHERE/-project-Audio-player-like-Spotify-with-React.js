@@ -23,3 +23,12 @@
     color: white;
     cursor: pointer;
 }
+.trackSelected{
+    color: rgb(0, 215, 113);
+}
+.track:hover{
+    cursor: pointer;
+}
+.trackContainer{
+    border: 2px solid white;
+}
