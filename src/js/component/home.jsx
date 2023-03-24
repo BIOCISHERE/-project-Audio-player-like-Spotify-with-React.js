@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Navbar from "./navbar.jsx";
 import Player from "./player.jsx";
 
 const songURL = "https://assets.breatheco.de/apis/sound/";
@@ -22,6 +23,7 @@ const Home = () => {
 	
 	return (
 		<div>
+			<Navbar />
 			<div className="songContainer">
 				<ol className="mx-0 mt-0 mb-1 p-0">
 					{name.map((title, i) => 

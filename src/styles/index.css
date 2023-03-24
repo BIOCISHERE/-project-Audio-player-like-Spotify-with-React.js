@@ -11,7 +11,7 @@
 
 */
 .songContainer{
-    height: 550px;
+    height: 495px;
     background: grey;
     overflow: hidden;
     overflow-y: scroll;
