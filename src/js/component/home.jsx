@@ -17,11 +17,11 @@ const Home = () => {
 		.then(response => response.json())
 		.then(data => setSongArray([
 			{id: 0, category: data[0].category, name: data[0].name, url: data[0].url},
-			{id: 1, category: data[1].category, name: data[1].name, url: data[1].url},
+			{id: 1, category: data[1].category, name: data[1].name +  ' ' + '(version 1)', url: data[1].url},
 			{id: 2, category: data[2].category, name: data[2].name, url: data[2].url},
 			{id: 3, category: data[3].category, name: data[3].name, url: data[3].url},
 			{id: 4, category: data[4].category, name: data[4].name, url: data[4].url},
-			{id: 5, category: data[5].category, name: data[5].name, url: data[5].url},
+			{id: 5, category: data[5].category, name: data[5].name + ' ' + '(version 2)', url: data[5].url},
 			{id: 6, category: data[6].category, name: data[6].name, url: data[6].url},
 			{id: 7, category: data[7].category, name: data[7].name, url: data[7].url},
 			{id: 8, category: data[8].category, name: data[8].name, url: data[8].url},
