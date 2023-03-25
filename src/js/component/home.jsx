@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { string } from "prop-types";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./navbar.jsx";
 import Player from "./player.jsx";
 
 const songURL = "https://assets.breatheco.de/apis/sound/";
 
 const Home = () => {
-	const [songArray, setSongArray] = useState([{id: '', category: '', name: '', url: ''}])
+	const [songArray, setSongArray] = useState([{id: '', category: '', name: '', url: ''}]);
+	const [isPlaying, setIsPlaying] = useState(false);
+	const [currentSong, setCurrentSong] = useState(0)
+
+	const audioTag = useRef();
 
 	useEffect(() => {
 		fetch("https://assets.breatheco.de/apis/sound/songs")
@@ -29,9 +34,18 @@ const Home = () => {
 			{id: 15, category: 'cartoon', name: data[18].name, url: data[18].url},
 			{id: 16, category: 'cartoon', name: data[19].name, url: data[19].url},
 			{id: 17, category: 'cartoon', name: data[20].name, url: data[20].url},
-			{id: 18, category: 'cartoon', name: data[21].name, url: data[21].url}
+			{id: 18, category: 'cartoon', name: data[21].name, url: data[21].url},
+			
 		]));
-	}, [])
+	}, []);
+
+	useEffect(() => {
+		if(isPlaying){
+			audioTag.current.play();
+		} else {
+			audioTag.current.pause();
+		}
+	}, [isPlaying, currentSong])
 	
 	return (
 		<div>
@@ -41,14 +55,13 @@ const Home = () => {
 				    {songArray.map((title, i) => 
 				        <div className="trackContainer py-2 ps-5" key={i}>
 						    {/* usar la clase trackSelected cuando se este reproduciendo la cancion */}
-						    <li className="track">{title.name}</li>
+						    <li className={title.id == currentSong ? 'track trackSelected' : 'track'} onClick={() => {setCurrentSong(i), setIsPlaying(true)}}>{title.name}</li>
 					    </div>
 					)}
 				</ol>
-				<button type="button" className="btn-close" aria-label="Close" onClick={console.log(songArray[0])}></button>
 			</div>
-			<audio src='' /> 
-			<Player />
+			<audio src={songURL+songArray[currentSong].url} ref={audioTag} /> 
+			<Player songArray={songArray} setSongArray={setSongArray} isPlaying={isPlaying} setIsPlaying={setIsPlaying} audioTag={audioTag} currentSong={currentSong} setCurrentSong={setCurrentSong} />
 		</div>
 	);
 };
