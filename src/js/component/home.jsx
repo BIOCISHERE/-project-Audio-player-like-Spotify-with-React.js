@@ -9,10 +9,8 @@ const Home = () => {
 	const [songArray, setSongArray] = useState([{id: '', category: '', name: '', url: ''}]);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [currentSong, setCurrentSong] = useState(0)
-
-	const audioTag = useRef();
-
-	useEffect(() => {
+	
+	const fetchFunct = () => {
 		fetch("https://assets.breatheco.de/apis/sound/songs")
 		.then(response => response.json())
 		.then(data => setSongArray([
@@ -37,6 +35,12 @@ const Home = () => {
 			{id: 18, category: 'cartoon', name: data[21].name, url: data[21].url},
 			
 		]));
+	}
+
+	const audioTag = useRef();
+
+	useEffect(() => {
+		fetchFunct()
 	}, []);
 
 	useEffect(() => {
